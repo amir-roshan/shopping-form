@@ -9,7 +9,7 @@
       <div class="cart-item">{{ item.num }}</div>
       <div class="cart-item">{{ item.price | currency : "CAD" : true }}</div>
       <div class="cart-item">
-        <button (click)="removeItem(item)">Delete</button>
+        <button class="btn-delete" (click)="removeItem(item)">Delete</button>
       </div>
     </ng-container>
   </div>

@@ -1,9 +1,31 @@
-<form #itemForm="ngForm" (ngSubmit)="onSubmit()">
-  <select id="items" name="items" [(ngModel)]="selectedItem" required>
-    <option value="" disabled selected>Select an item</option>
-    <option *ngFor="let item of items" [value]="item.item">
-      {{ item.item }}
-    </option>
-  </select>
-  <button [disabled]="!itemForm.form.valid" type="submit">Add Item</button>
-</form>
+<div class="form-container">
+  <form #itemForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+    <!-- Item Dropdown -->
+    <div class="form-group">
+      <label for="items">Select Item:</label>
+      <select id="items" name="items" [(ngModel)]="selectedItem" required>
+        <option value="" disabled selected>Select an item</option>
+        <option *ngFor="let item of items" [value]="item.item">
+          {{ item.item }}
+        </option>
+      </select>
+      <div
+        *ngIf="itemForm.controls['items']?.touched && itemForm.controls['items']?.errors?.['required']"
+        class="error"
+      >
+        Selecting an item is required.
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="form-actions">
+      <button
+        type="submit"
+        class="btn btn-submit"
+        [disabled]="!itemForm.form.valid"
+      >
+        Add Item
+      </button>
+    </div>
+  </form>
+</div>
