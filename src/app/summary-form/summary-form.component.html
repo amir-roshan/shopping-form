@@ -23,7 +23,14 @@
     <div class="cart-summary-item">
       Total: {{ total | currency : "CAD" : "symbol" }}
     </div>
-    <div class="cart-summary-item">
+    <div
+      class="cart-summary-item"
+      *ngIf="
+        firstName.trim() !== '' &&
+        lastName.trim() !== '' &&
+        address.trim() !== ''
+      "
+    >
       Order for {{ firstName }} {{ lastName }} at {{ address }}
     </div>
   </div>

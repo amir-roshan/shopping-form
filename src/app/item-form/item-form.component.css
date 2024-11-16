@@ -28,6 +28,21 @@ select {
     background-color: #fff;
 }
 
+input[type='number'] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+
 .error {
     color: #d9534f;
     font-size: 12px;

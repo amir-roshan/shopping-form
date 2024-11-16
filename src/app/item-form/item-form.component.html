@@ -17,6 +17,23 @@
       </div>
     </div>
 
+    <div>
+      <input
+        type="number"
+        id="quantity"
+        required
+        [(ngModel)]="quantity"
+        name="quantity"
+        #quantityModel="ngModel"
+        placeholder="Enter a number"
+      />
+      <div
+        *ngIf="quantityModel.errors?.['required'] && quantityModel.touched"
+        class="error"
+      >
+        Number of items is required.
+      </div>
+    </div>
     <!-- Submit Button -->
     <div class="form-actions">
       <button
