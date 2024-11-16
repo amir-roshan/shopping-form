@@ -1,15 +1,28 @@
-<ul *ngFor="let item of items; let i = index">
-  <li>
-    {{ item.item }}:
-    <div>{{ item.num }}</div>
-    <div>{{ item.price }}</div>
-    <input type="button" value="delete" (click)="removeItem(item)" />
-  </li>
-</ul>
-<ul>
-  <li>
-    <div>Subtotal {{ subtotal | currency : "CAD" : true }}</div>
-    <div>Tax {{ tax | currency : "CAD" : true }}</div>
-    <div>Total {{ total | currency : "CAD" : true }}</div>
-  </li>
-</ul>
+<div class="cart-container">
+  <div class="cart-grid">
+    <div class="cart-header">Item</div>
+    <div class="cart-header">Qty</div>
+    <div class="cart-header">Unit Price</div>
+    <div class="cart-header">Action</div>
+    <ng-container *ngFor="let item of items; let i = index">
+      <div class="cart-item">{{ item.item }}</div>
+      <div class="cart-item">{{ item.num }}</div>
+      <div class="cart-item">{{ item.price | currency : "CAD" : true }}</div>
+      <div class="cart-item">
+        <button (click)="removeItem(item)">Delete</button>
+      </div>
+    </ng-container>
+  </div>
+  <div class="cart-summary">
+    <div class="cart-summary-item">
+      Subtotal: {{ subtotal | currency : "CAD" : "symbol" }}
+    </div>
+    <div class="cart-summary-item">
+      Tax: {{ tax | currency : "CAD" : "symbol" }}
+    </div>
+    <div class="cart-summary-item">
+      Total: {{ total | currency : "CAD" : "symbol" }}
+    </div>
+    <div class="cart-summary-item">Order for</div>
+  </div>
+</div>
