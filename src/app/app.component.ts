@@ -6,6 +6,7 @@ import { first, last } from 'rxjs';
 interface ProductItem {
   item: string;
   price: number;
+  num: number;
 }
 @Component({
   selector: 'app-root',
@@ -31,7 +32,7 @@ export class AppComponent {
     this.address = data.streetAddress;
   }
 
-  handleItemSelected(data: { item: string; price: number }) {
-    this.itemData = { item: data.item, price: data.price };
+  handleItemSelected(data: { item: string; price: number; num: number }) {
+    this.itemData = { item: data.item, price: data.price, num: data.num };
   }
 }

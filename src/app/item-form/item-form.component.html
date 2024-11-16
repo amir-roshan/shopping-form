@@ -26,12 +26,19 @@
         name="quantity"
         #quantityModel="ngModel"
         placeholder="Enter a number"
+        min="1"
       />
       <div
         *ngIf="quantityModel.errors?.['required'] && quantityModel.touched"
         class="error"
       >
         Number of items is required.
+      </div>
+      <div
+        *ngIf="quantityModel.errors?.['min'] && quantityModel.touched"
+        class="error"
+      >
+        Quantity must be at least 1.
       </div>
     </div>
     <!-- Submit Button -->

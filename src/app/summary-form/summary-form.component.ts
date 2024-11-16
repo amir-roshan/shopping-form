@@ -1,11 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-interface ProductItem {
-  item: string;
-  price: number;
-}
-
 interface ProductItems {
   item: string;
   price: number;
@@ -22,7 +17,7 @@ interface ProductItems {
 export class SummaryFormComponent implements OnChanges {
   readonly TAX_RATE = 7;
   @Input()
-  newItem!: ProductItem;
+  newItem!: ProductItems;
 
   @Input()
   address!: string;
@@ -34,7 +29,7 @@ export class SummaryFormComponent implements OnChanges {
   lastName!: string;
 
   items: Array<ProductItems> = [];
-  hasSimilarItem!: ProductItem | undefined;
+  hasSimilarItem!: ProductItems | undefined;
 
   subtotal: number = 0;
   tax: number = 0;
@@ -52,9 +47,9 @@ export class SummaryFormComponent implements OnChanges {
     );
 
     if (existingItem) {
-      existingItem.num++;
+      existingItem.num += this.newItem.num;
     } else {
-      this.items.push({ ...this.newItem, num: 1 });
+      this.items.push({ ...this.newItem });
     }
 
     console.log(this.items);
@@ -63,7 +58,8 @@ export class SummaryFormComponent implements OnChanges {
   removeItem(item: ProductItems) {
     item.num--;
     if (item.num === 0) {
-      this.items = this.items.filter((item) => item.item !== item.item);
+      const index = this.items.findIndex((i) => i.item === item.item);
+      this.items.splice(index, 1);
     }
     this.calculateSubtotal();
   }
