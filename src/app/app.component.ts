@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NameAddressFormComponent } from './name-address-form/name-address-form.component';
 import { ItemFormComponent } from './item-form/item-form.component';
 import { SummaryFormComponent } from './summary-form/summary-form.component';
+import { first, last } from 'rxjs';
 interface ProductItem {
   item: string;
   price: number;
@@ -14,13 +15,20 @@ interface ProductItem {
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  fName: string = '';
+  lName: string = '';
+  address!: string;
+
   itemData!: ProductItem;
+
   handleFormSubmit(data: {
     firstName: string;
     lastName: string;
     streetAddress: string;
   }) {
-    console.log('Data received from child:', data);
+    this.fName = data.firstName;
+    this.lName = data.lastName;
+    this.address = data.streetAddress;
   }
 
   handleItemSelected(data: { item: string; price: number }) {

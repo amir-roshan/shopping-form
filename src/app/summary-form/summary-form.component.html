@@ -23,6 +23,8 @@
     <div class="cart-summary-item">
       Total: {{ total | currency : "CAD" : "symbol" }}
     </div>
-    <div class="cart-summary-item">Order for</div>
+    <div class="cart-summary-item">
+      Order for {{ firstName }} {{ lastName }} at {{ address }}
+    </div>
   </div>
 </div>

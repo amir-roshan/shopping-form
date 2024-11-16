@@ -24,6 +24,15 @@ export class SummaryFormComponent implements OnChanges {
   @Input()
   newItem!: ProductItem;
 
+  @Input()
+  address!: string;
+
+  @Input()
+  firstName!: string;
+
+  @Input()
+  lastName!: string;
+
   items: Array<ProductItems> = [];
   hasSimilarItem!: ProductItem | undefined;
 

@@ -1,3 +1,10 @@
-<app-name-address-form></app-name-address-form>
+<app-name-address-form
+  (formSubmitted)="handleFormSubmit($event)"
+></app-name-address-form>
 <app-item-form (itemSelected)="handleItemSelected($event)"></app-item-form>
-<app-summary-form [newItem]="itemData"></app-summary-form>
+<app-summary-form
+  [newItem]="itemData"
+  [firstName]="fName"
+  [lastName]="lName"
+  [address]="address"
+></app-summary-form>
