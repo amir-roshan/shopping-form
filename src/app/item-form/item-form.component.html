@@ -1,0 +1,9 @@
+<form #itemForm="ngForm" (ngSubmit)="onSubmit()">
+  <select id="items" name="items" [(ngModel)]="selectedItem" required>
+    <option value="" disabled selected>Select an item</option>
+    <option *ngFor="let item of items" [value]="item.item">
+      {{ item.item }}
+    </option>
+  </select>
+  <button [disabled]="!itemForm.form.valid" type="submit">Add Item</button>
+</form>

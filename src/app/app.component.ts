@@ -1,13 +1,29 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-
+import { NameAddressFormComponent } from './name-address-form/name-address-form.component';
+import { ItemFormComponent } from './item-form/item-form.component';
+import { SummaryFormComponent } from './summary-form/summary-form.component';
+interface ProductItem {
+  item: string;
+  price: number;
+}
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [NameAddressFormComponent, ItemFormComponent, SummaryFormComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'shopping-form';
+  itemData!: ProductItem;
+  handleFormSubmit(data: {
+    firstName: string;
+    lastName: string;
+    streetAddress: string;
+  }) {
+    console.log('Data received from child:', data);
+  }
+
+  handleItemSelected(data: { item: string; price: number }) {
+    this.itemData = { item: data.item, price: data.price };
+  }
 }

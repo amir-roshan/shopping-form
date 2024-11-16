@@ -1,0 +1,8 @@
+<ul *ngFor="let item of items; let i = index">
+  <li>
+    {{ item.item }}:
+    <div>{{ item.num }}</div>
+    <div>{{ item.price }}</div>
+    <input type="button" value="delete" (click)="removeItem(item)" />
+  </li>
+</ul>
