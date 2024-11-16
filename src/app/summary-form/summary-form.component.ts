@@ -20,15 +20,21 @@ interface ProductItems {
   styleUrl: './summary-form.component.css',
 })
 export class SummaryFormComponent implements OnChanges {
+  readonly TAX_RATE = 7;
   @Input()
   newItem!: ProductItem;
 
   items: Array<ProductItems> = [];
   hasSimilarItem!: ProductItem | undefined;
 
+  subtotal: number = 0;
+  tax: number = 0;
+  total: number = 0;
+
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['newItem'] && changes['newItem'].currentValue) {
       this.addItems();
+      this.calculateSubtotal();
     }
   }
   addItems() {
@@ -50,5 +56,20 @@ export class SummaryFormComponent implements OnChanges {
     if (item.num === 0) {
       this.items = this.items.filter((item) => item.item !== item.item);
     }
+    this.calculateSubtotal();
+  }
+
+  calculateSubtotal() {
+    this.subtotal = this.items.reduce(
+      (sum, item) => sum + item.price * item.num,
+      0
+    );
+
+    this.tax = this.calculateTax(this.subtotal);
+    this.total = this.tax + this.subtotal;
+  }
+
+  calculateTax(subtotal: number): number {
+    return (this.TAX_RATE / 100) * this.subtotal;
   }
 }

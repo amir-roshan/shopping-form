@@ -6,3 +6,10 @@
     <input type="button" value="delete" (click)="removeItem(item)" />
   </li>
 </ul>
+<ul>
+  <li>
+    <div>Subtotal {{ subtotal | currency : "CAD" : true }}</div>
+    <div>Tax {{ tax | currency : "CAD" : true }}</div>
+    <div>Total {{ total | currency : "CAD" : true }}</div>
+  </li>
+</ul>
