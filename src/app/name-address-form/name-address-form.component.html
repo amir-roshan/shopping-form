@@ -1,61 +1,86 @@
-<form #nameAddressForm="ngForm">
-  <label>
-    First Name:
-    <input
-      type="text"
-      pattern="^[A-Za-z'-]+$"
-      required
-      [(ngModel)]="firstName"
-      name="firstName"
-      #firstNameModel="ngModel"
-    />
-    <div *ngIf="firstNameModel.errors?.['required'] && firstNameModel.touched">
-      First name is required.
+<div class="form-container">
+  <form #nameAddressForm="ngForm" novalidate>
+    <!-- First Name -->
+    <div class="form-group">
+      <label for="firstName">First Name:</label>
+      <input
+        id="firstName"
+        type="text"
+        pattern="^[A-Za-z'-]+$"
+        required
+        [(ngModel)]="firstName"
+        name="firstName"
+        #firstNameModel="ngModel"
+      />
+      <div
+        *ngIf="firstNameModel.errors?.['required'] && firstNameModel.touched"
+        class="error"
+      >
+        First name is required.
+      </div>
+      <div
+        *ngIf="firstNameModel.errors?.['pattern'] && firstNameModel.touched"
+        class="error"
+      >
+        First name must contain only letters, apostrophes ('), and hyphens (-).
+      </div>
     </div>
-    <div *ngIf="firstNameModel.errors?.['pattern'] && firstNameModel.touched">
-      Firts name must contain only letters, apostrophes ('), and hyphens (-).
-    </div>
-  </label>
-  <label>
-    Last Name:
-    <input
-      type="text"
-      pattern="^[A-Za-z'-]+$"
-      required
-      [(ngModel)]="lastName"
-      name="lastName"
-      #lastNameModel="ngModel"
-    />
-    <div *ngIf="lastNameModel.touched && lastNameModel.errors?.['required']">
-      Last name is required.
-    </div>
-    <div *ngIf="lastNameModel.touched && lastNameModel.errors?.['pattern']">
-      Last name must contain only letters, apostrophes ('), and hyphens (-).
-    </div>
-  </label>
 
-  <label
-    >Street Address:
-    <input
-      type="text"
-      [(ngModel)]="streetAddress"
-      name="streetAddress"
-      #streetAddressModel="ngModel"
-      required
-    />
-  </label>
-  <div
-    *ngIf="lastNameModel.touched && streetAddressModel?.errors?.['required']"
-  >
-    Street address is required.
-  </div>
+    <!-- Last Name -->
+    <div class="form-group">
+      <label for="lastName">Last Name:</label>
+      <input
+        id="lastName"
+        type="text"
+        pattern="^[A-Za-z'-]+$"
+        required
+        [(ngModel)]="lastName"
+        name="lastName"
+        #lastNameModel="ngModel"
+      />
+      <div
+        *ngIf="lastNameModel.errors?.['required'] && lastNameModel.touched"
+        class="error"
+      >
+        Last name is required.
+      </div>
+      <div
+        *ngIf="lastNameModel.errors?.['pattern'] && lastNameModel.touched"
+        class="error"
+      >
+        Last name must contain only letters, apostrophes ('), and hyphens (-).
+      </div>
+    </div>
 
-  <button
-    type="submit"
-    class="btn btn-default"
-    [disabled]="!nameAddressForm.form.valid"
-    (click)="onSubmit()"
-  >
-    Submit
-  </button>
-</form>
+    <!-- Street Address -->
+    <div class="form-group">
+      <label for="streetAddress">Street Address:</label>
+      <input
+        id="streetAddress"
+        type="text"
+        required
+        [(ngModel)]="streetAddress"
+        name="streetAddress"
+        #streetAddressModel="ngModel"
+      />
+      <div
+        *ngIf="streetAddressModel.errors?.['required'] && streetAddressModel.touched"
+        class="error"
+      >
+        Street address is required.
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="form-actions">
+      <button
+        type="submit"
+        class="btn btn-submit"
+        [disabled]="!nameAddressForm.form.valid"
+        (click)="onSubmit()"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
