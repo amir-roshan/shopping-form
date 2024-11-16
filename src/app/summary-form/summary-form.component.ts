@@ -56,11 +56,9 @@ export class SummaryFormComponent implements OnChanges {
   }
 
   removeItem(item: ProductItems) {
-    item.num--;
-    if (item.num === 0) {
-      const index = this.items.findIndex((i) => i.item === item.item);
-      this.items.splice(index, 1);
-    }
+    const index = this.items.findIndex((i) => i.item === item.item);
+    this.items.splice(index, 1);
+
     this.calculateSubtotal();
   }
 
